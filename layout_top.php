@@ -128,24 +128,29 @@ $tahun = date("Y");
 							if ($pagedesc == "Work Instruction") {
 								echo '<li><a href="wi.php" class="active">Work Instruction</a></li>';
 							} else {
-								echo '<li><a href="wi.php">Work Instruction</a></li>';
+								echo '<li><a href="wi.php">📋 Work Instruction</a></li>';
 							}
 							if ($pagedesc == "Support Document") {
-								echo '<li><a href="std.php" class="active">Support Document</a></li>';
+								echo '<li><a href="std.php" class="active">📎 Support Document</a></li>';
 							} else {
-								echo '<li><a href="std.php">Support Document</a></li>';
+								echo '<li><a href="std.php">📎 Support Document</a></li>';
 							}
 							if ($pagedesc == "MSDS") {
-								echo '<li><a href="msds.php" class="active">MSDS</a></li>';
+								echo '<li><a href="msds.php" class="active">⚠️ MSDS</a></li>';
 							} else {
-								echo '<li><a href="msds.php">MSDS</a></li>';
+								echo '<li><a href="msds.php">⚠️ MSDS</a></li>';
 							}
-							
+							if ($pagedesc == "COA") {
+								echo '<li><a href="COA.php" class="active">📜 COA</a></li>';
+							} else {
+								echo '<li><a href="COA.php">📜 COA</a></li>';
+							}
+
 							?>
 						</ul><!-- /.nav-second-level -->
 
 						<!-- open <li> tag generated with php, see line 155-160 -->
-						
+
 
 
 				</div>

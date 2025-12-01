@@ -1,2 +1,3 @@
-# aplikasicuti
-website aplikasi cuti karyawan_proyek Sistem Ubsi Karawang
+Updated 1-12-2025
+- Membuat auto generate No MSDS
+- Membuat halaman COA
