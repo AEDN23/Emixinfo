@@ -6,7 +6,7 @@ if (isset($_GET['video'])) {
     $video = mysqli_real_escape_string($conn, $_GET['video']);
 
     // Query cari data berdasarkan nama video
-    $sql = "SELECT * FROM std WHERE video='$video' LIMIT 1";
+    $sql = "SELECT * FROM coa WHERE video='$video' LIMIT 1";
     $query = mysqli_query($conn, $sql);
     $data  = mysqli_fetch_array($query);
 
@@ -51,11 +51,11 @@ if (isset($_GET['video'])) {
 <body>
     <h2><?php echo $data['nama']; ?></h2>
     <video width="800" controls>
-        <source src="video/msds/<?php echo $data['video']; ?>" type="video/mp4">
+        <source src="video/std/<?php echo $data['video']; ?>" type="video/mp4">
         Browser tidak mendukung video tag.
     </video>
     <br><br>
-    <a href="msds.php" class="btn btn-warning btn-xl">⬅ Kembali</a>
+    <a href="coa.php" class="btn btn-warning btn-xl">⬅ Kembali</a>
 </body>
 
 </html>

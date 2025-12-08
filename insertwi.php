@@ -6,7 +6,7 @@
     $departemen = $_POST['departemen'];
     $status     = $_POST['status'];
     $keterangan = $_POST['keterangan'];
-    $approved = $_POST['approved'];
+    $approved   = $_POST['approved'];
 
     $aktif = "Aktif";
 

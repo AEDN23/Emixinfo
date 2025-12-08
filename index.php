@@ -13,6 +13,10 @@ $sql_msds = "SELECT id_msds FROM msds WHERE active='Aktif'";
 $ress_msds = mysqli_query($conn, $sql_msds);
 $msds = mysqli_num_rows($ress_msds);
 
+$sql_coa = "SELECT id_coa FROM coa WHERE active='Aktif'";
+$ress_coa = mysqli_query($conn, $sql_coa);
+$coa = mysqli_num_rows($ress_coa);
+
 // deskripsi halaman
 $pagedesc = "Beranda";
 include("layout_top.php");
@@ -110,7 +114,7 @@ include("layout_top.php");
 								<i class="fa fa-check-circle fa-3x"></i>
 							</div>
 							<div class="col-xs-9 text-right">
-								<div class="huge"><?php echo 'data coa' ?></div>
+								<div class="huge"><?php echo $coa ?></div>
 								<div>
 									<h4>Certificate of Analysis (COA)</h4>
 								</div>

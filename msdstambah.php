@@ -10,27 +10,13 @@ $res_last = mysqli_query($conn, $sql_last);
 
 if (mysqli_num_rows($res_last) > 0) {
 	$row_last = mysqli_fetch_assoc($res_last);
-	$last_id = $row_last['id_msds']; // Contoh: MSDS-999 atau MSDS-1000
-
-	// 2. Pecah string berdasarkan tanda "-"
-	// Ini akan memisahkan "MSDS" dan Angkanya, berapapun panjang angkanya.
+	$last_id = $row_last['id_msds'];  
 	$parts = explode("-", $last_id);
 
-	// Ambil bagian array terakhir (angkanya) dan ubah jadi integer
-	// end($parts) mengambil elemen terakhir setelah tanda strip
 	$number = (int) end($parts);
 
-	// 3. Tambahkan 1
 	$new_number = $number + 1;
 
-	// 4. Format ulang
-	// "%03d" artinya: Minimal 3 digit dengan nol di depan.
-	// TAPI hebatnya sprintf, jika angkanya 1000 (4 digit), dia TIDAK akan memotongnya.
-	// 1 -> 001
-	// 99 -> 099
-	// 999 -> 999
-	// 1000 -> 1000 (Otomatis menyesuaikan)
-	// 10001 -> 10001 (Otomatis menyesuaikan)
 
 	$new_id = "MSDS-" . sprintf("%03d", $new_number);
 } else {
