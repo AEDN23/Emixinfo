@@ -1,6 +1,10 @@
-<?php $pagedesc = "Login"; ?>
+<?php
+session_start();
+$pagedesc = "Login";
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,83 +19,294 @@
 	<!-- Bootstrap Core CSS -->
 	<link href="libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
+	<!-- Animate CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+
 	<!-- Custom CSS -->
 	<link href="dist/css/offline-font.css" rel="stylesheet">
 	<link href="dist/css/custom.css" rel="stylesheet">
 
+	<!-- Custom Login CSS -->
+	<style>
+		body {
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			min-height: 100vh;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			padding-top: 60px;
+		}
+
+		.login-wrapper {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: calc(100vh - 120px);
+		}
+
+		.login-container {
+			animation: fadeInDown 0.8s;
+			max-width: 400px;
+			width: 100%;
+		}
+
+		.login-card {
+			background: rgba(255, 255, 255, 0.95);
+			border-radius: 15px;
+			box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+			padding: 40px 30px;
+			border: none;
+			transition: transform 0.3s;
+		}
+
+		.login-card:hover {
+			transform: translateY(-5px);
+		}
+
+		.logo-container {
+			text-align: center;
+			margin-bottom: 30px;
+		}
+
+		.logo-container img {
+			transition: transform 0.5s;
+			animation: pulse 2s infinite;
+		}
+
+		@keyframes pulse {
+			0% {
+				transform: scale(1);
+			}
+
+			50% {
+				transform: scale(1.05);
+			}
+
+			100% {
+				transform: scale(1);
+			}
+		}
+
+		.form-control {
+			border-radius: 25px;
+			padding: 12px 20px;
+			border: 2px solid #e1e5eb;
+			transition: all 0.3s;
+		}
+
+		.form-control:focus {
+			border-color: #667eea;
+			box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+		}
+
+		.btn-login {
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			border: none;
+			border-radius: 25px;
+			padding: 12px;
+			color: white;
+			font-weight: 600;
+			letter-spacing: 1px;
+			transition: all 0.3s;
+			width: 100%;
+			margin-top: 10px;
+		}
+
+		.btn-login:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+		}
+
+		.btn-login:active {
+			transform: translateY(0);
+		}
+
+		.alert {
+			border-radius: 10px;
+			animation: fadeIn 0.5s;
+		}
+
+		.alert-dismissible .close {
+			padding: 0.75rem 1.25rem;
+		}
+
+		.footer-bottom {
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+			background: rgba(0, 0, 0, 0.2);
+			border-top: 1px solid rgba(255, 255, 255, 0.1);
+		}
+
+		.footer-bottom p {
+			margin: 10px 0;
+			color: rgba(255, 255, 255, 0.8) !important;
+		}
+
+		@keyframes fadeInDown {
+			from {
+				opacity: 0;
+				transform: translateY(-30px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+			}
+
+			to {
+				opacity: 1;
+			}
+		}
+	</style>
+
 	<!-- Custom Fonts -->
 	<link href="libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	
+
 	<!-- jQuery -->
 	<script src="libs/jquery/dist/jquery.min.js"></script>
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
-	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-	<![endif]-->
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 
-<body style="background-color: #f1f4f7">
+<body>
+	<div class="login-wrapper">
+		<div class="login-container">
+			<?php
+			// Tampilkan alert jika ada
+			if (file_exists("layout_alert.php")) {
+				include("layout_alert.php");
+			}
 
-	<section id="main-wrapper" style="margin-top: 120px">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4"><?php include("layout_alert.php"); ?></div>
-			</div><!-- /.row -->
-			<div class="row">
-				<div id="page-wrapper" class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4" style="background-color: #ffffff; border-radius: 3px; webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05); box-shadow: 0 1px 1px rgba(0,0,0,.05)">
-					<div class="row">
-						<div class="col-lg-12">
-							<br/>
-							<center><img src="libs/images/1.png" width="160" height="120"></center>
-							<h2 class="text-center"><br/> <b>GRADE CHART DATA</b></h2>
+			// Tampilkan pesan expired session
+			if (isset($_GET['expired'])): ?>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="alert alert-info alert-dismissible fade in" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<i class="fa fa-info-circle"></i> Sesi telah berakhir. Silakan login kembali.
 						</div>
-					</div><!-- /.row -->
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="panel panel-default">
-								<div class="panel-body">
-									<form action="login_auth.php" method="post">
-										<div class="form-group">
-											<input type="text" class="form-control" name="username" placeholder="Username" required>
-										</div>
-										<div class="form-group">
-											<input type="password" class="form-control" name="password" placeholder="Password" required>
-										</div>
-										<div class="form-group">
-											<select class="form-control" name="akses" required>
-											<option value="">======= Login Sebagai =======</option>
-											<option value="Admin">Administrator/HRD</option>
-											<option value="Lead">Leader</option>
-											<option value="Mng">Manager</option>
-											<option value="Pgw">Pegawai</option>
-											<option value="Spv">Supervisor</option>
-											</select>
-										</div>
-										<div class="form-group">
-											<input type="submit" class="btn btn-success btn-block" name="login" value="Masuk">
-										</div>
-									</form>
-								</div>
-							</div>
-						</div><!-- /.col -->
-					</div><!-- /.row -->
-				</div><!-- /.col -->
-			</div><!-- /.row -->
-		</div><!-- /.container -->
-	</section>
-	
+					</div>
+				</div>
+			<?php endif; ?>
+
+			<div class="login-card">
+				<div class="logo-container">
+					<img src="libs/images/1.png" width="160" height="120">
+					<h2 class="text-center" style="margin-top: 20px; color: #333;">
+						<b>GRADE CHART DATA</b>
+					</h2>
+					<p class="text-muted text-center">Silakan login untuk melanjutkan</p>
+				</div>
+
+				<form action="login_auth.php" method="post" id="loginForm">
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon" style="border-radius: 25px 0 0 25px; border: 2px solid #e1e5eb; border-right: none; background: #f8f9fa; padding: 0 15px;">
+								<i class="fa fa-user" style="line-height: 38px;"></i>
+							</span>
+							<input type="text" class="form-control" name="username" id="username"
+								placeholder="Username" required autofocus style="border-radius: 0 25px 25px 0;">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon" style="border-radius: 25px 0 0 25px; border: 2px solid #e1e5eb; border-right: none; background: #f8f9fa; padding: 0 15px;">
+								<i class="fa fa-lock" style="line-height: 38px;"></i>
+							</span>
+							<input type="password" class="form-control" name="password" id="password"
+								placeholder="Password" required style="border-radius: 0 25px 25px 0;">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-login" name="login" id="loginBtn">
+							<i class="fa fa-sign-in"></i> MASUK
+						</button>
+					</div>
+				</form>
+			</div>
+
+			<div class="text-center mt-3">
+				<small style="color: rgba(255, 255, 255, 0.8);">
+					&copy; <?php echo date('Y'); ?> Grade Chart Data
+				</small>
+			</div>
+		</div>
+	</div>
+
 	<!-- footer-bottom -->
 	<div class="navbar navbar-inverse navbar-fixed-bottom footer-bottom">
 		<div class="container text-center">
-			<p class="text-center" style="color: #D1C4E9; margin: 0 0 5px; padding: 0"><small></small></p>
+			<p class="text-center" style="color: #D1C4E9; margin: 0 0 5px; padding: 0">
+				<small>Version 1.0.0</small>
+			</p>
 		</div>
 	</div><!-- /.footer-bottom -->
 
 	<!-- Bootstrap Core JavaScript -->
 	<script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
 
+	<!-- Custom Login Script -->
+	<script>
+		$(document).ready(function() {
+			// Animasi form saat halaman dimuat
+			$('.form-control').each(function(i) {
+				$(this).css('opacity', '0').delay(i * 200).animate({
+					opacity: 1
+				}, 600);
+			});
+
+			// Validasi form sebelum submit
+			$('#loginForm').submit(function(e) {
+				var username = $('#username').val().trim();
+				var password = $('#password').val().trim();
+
+				if (username === '' || password === '') {
+					e.preventDefault();
+
+					// Animasi shake pada input kosong
+					if (username === '') {
+						$('#username').addClass('animate__animated animate__shakeX');
+						setTimeout(function() {
+							$('#username').removeClass('animate__animated animate__shakeX');
+						}, 1000);
+					}
+
+					if (password === '') {
+						$('#password').addClass('animate__animated animate__shakeX');
+						setTimeout(function() {
+							$('#password').removeClass('animate__animated animate__shakeX');
+						}, 1000);
+					}
+
+					return false;
+				}
+
+				// Tampilkan loading pada tombol
+				$('#loginBtn').html('<i class="fa fa-spinner fa-spin"></i> MEMUAT...');
+				$('#loginBtn').prop('disabled', true);
+
+				return true;
+			});
+
+			// Auto dismiss alert setelah 5 detik
+			setTimeout(function() {
+				$('.alert').alert('close');
+			}, 5000);
+		});
+	</script>
 </body>
+
 </html>
