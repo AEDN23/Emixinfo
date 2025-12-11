@@ -1,6 +1,9 @@
 <?php
 include("sess_check.php");
 
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
 $sql_wi = "SELECT id_dokumen FROM wi WHERE active='Aktif'";
 $ress_wi = mysqli_query($conn, $sql_wi);
 $wi = mysqli_num_rows($ress_wi);

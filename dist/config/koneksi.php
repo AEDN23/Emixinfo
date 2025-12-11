@@ -6,12 +6,11 @@ $dbuser = "root";
 $dbpass = "!Emix#2025";
 $dbname = "db_informasi";
 
-$koneksi = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
-if (!$koneksi) {
+if (!$conn) {
     die("Tidak dapat terhubung ke database: " . mysqli_connect_error());
 }
-
+    
 // Set charset
-mysqli_set_charset($koneksi, "utf8");
-?>
+mysqli_set_charset($conn, "utf8");

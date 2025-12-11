@@ -1,6 +1,11 @@
 <?php
 session_start();
 $pagedesc = "Login";
+
+// HAPUS debug session yang mengganggu tampilan
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -122,6 +127,7 @@ $pagedesc = "Login";
 		.alert {
 			border-radius: 10px;
 			animation: fadeIn 0.5s;
+			margin-bottom: 20px;
 		}
 
 		.alert-dismissible .close {
@@ -180,25 +186,48 @@ $pagedesc = "Login";
 <body>
 	<div class="login-wrapper">
 		<div class="login-container">
-			<?php
-			// Tampilkan alert jika ada
-			if (file_exists("layout_alert.php")) {
-				include("layout_alert.php");
-			}
+			<!-- Alert Container di atas form -->
+			<div id="alert-container">
+				<?php
+				// Tampilkan alert jika ada dari session
+				if (isset($_SESSION['alert'])) {
+					$alert_type = isset($_SESSION['alert_type']) ? $_SESSION['alert_type'] : 'warning';
 
-			// Tampilkan pesan expired session
-			if (isset($_GET['expired'])): ?>
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="alert alert-info alert-dismissible fade in" role="alert">
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							<i class="fa fa-info-circle"></i> Sesi telah berakhir. Silakan login kembali.
-						</div>
-					</div>
-				</div>
-			<?php endif; ?>
+					echo '<div class="alert alert-' . $alert_type . ' alert-dismissible fade in" role="alert">';
+					echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+					echo '<span aria-hidden="true">&times;</span>';
+					echo '</button>';
+
+					// Icon berdasarkan tipe alert
+					if ($alert_type == 'success') {
+						echo '<i class="fa fa-check-circle"></i> ';
+					} elseif ($alert_type == 'danger') {
+						echo '<i class="fa fa-exclamation-triangle"></i> ';
+					} elseif ($alert_type == 'warning') {
+						echo '<i class="fa fa-exclamation-circle"></i> ';
+					} else {
+						echo '<i class="fa fa-info-circle"></i> ';
+					}
+
+					echo $_SESSION['alert'];
+					echo '</div>';
+
+					// Hapus session alert setelah ditampilkan
+					unset($_SESSION['alert']);
+					unset($_SESSION['alert_type']);
+				}
+
+				// Tampilkan pesan expired session
+				if (isset($_GET['expired'])) {
+					echo '<div class="alert alert-info alert-dismissible fade in" role="alert">';
+					echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+					echo '<span aria-hidden="true">&times;</span>';
+					echo '</button>';
+					echo '<i class="fa fa-info-circle"></i> Sesi telah berakhir. Silakan login kembali.';
+					echo '</div>';
+				}
+				?>
+			</div>
 
 			<div class="login-card">
 				<div class="logo-container">
@@ -209,13 +238,13 @@ $pagedesc = "Login";
 					<p class="text-muted text-center">Silakan login untuk melanjutkan</p>
 				</div>
 
-				<form action="login_auth.php" method="post" id="loginForm">
+				<form action="login_auth.php" method="post"  id="loginForm">
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon" style="border-radius: 25px 0 0 25px; border: 2px solid #e1e5eb; border-right: none; background: #f8f9fa; padding: 0 15px;">
 								<i class="fa fa-user" style="line-height: 38px;"></i>
 							</span>
-							<input type="text" class="form-control" name="username" id="username"
+							<input type="text" class="form-control" name="username"
 								placeholder="Username" required autofocus style="border-radius: 0 25px 25px 0;">
 						</div>
 					</div>
@@ -225,7 +254,7 @@ $pagedesc = "Login";
 							<span class="input-group-addon" style="border-radius: 25px 0 0 25px; border: 2px solid #e1e5eb; border-right: none; background: #f8f9fa; padding: 0 15px;">
 								<i class="fa fa-lock" style="line-height: 38px;"></i>
 							</span>
-							<input type="password" class="form-control" name="password" id="password"
+							<input type="password" class="form-control" name="password"  
 								placeholder="Password" required style="border-radius: 0 25px 25px 0;">
 						</div>
 					</div>
@@ -234,6 +263,21 @@ $pagedesc = "Login";
 						<button type="submit" class="btn btn-login" name="login" id="loginBtn">
 							<i class="fa fa-sign-in"></i> MASUK
 						</button>
+					</div>
+
+					<!-- Info login untuk testing -->
+					<div class="text-center mt-3">
+						<small class="text-muted">
+							<button type="button" class="btn btn-xs btn-link" id="showTestCredential">
+								<i class="fa fa-key"></i> Lihat credential testing
+							</button>
+						</small>
+						<div id="testCredential" style="display: none; margin-top: 10px; padding: 10px; background: #f8f9fa; border-radius: 5px;">
+							<small>
+								<strong>Username:</strong> admin, manager, supervisor, user1<br>
+								<strong>Password:</strong> password (untuk semua user)
+							</small>
+						</div>
 					</div>
 				</form>
 			</div>
@@ -268,6 +312,11 @@ $pagedesc = "Login";
 				}, 600);
 			});
 
+			// Toggle test credential
+			$('#showTestCredential').click(function() {
+				$('#testCredential').slideToggle();
+			});
+
 			// Validasi form sebelum submit
 			$('#loginForm').submit(function(e) {
 				var username = $('#username').val().trim();
@@ -275,6 +324,16 @@ $pagedesc = "Login";
 
 				if (username === '' || password === '') {
 					e.preventDefault();
+
+					// Tampilkan alert
+					var alertHtml = '<div class="alert alert-warning alert-dismissible fade in" role="alert">' +
+						'<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+						'<span aria-hidden="true">&times;</span>' +
+						'</button>' +
+						'<i class="fa fa-exclamation-circle"></i> Username dan password harus diisi!' +
+						'</div>';
+
+					$('#alert-container').html(alertHtml);
 
 					// Animasi shake pada input kosong
 					if (username === '') {
@@ -305,6 +364,14 @@ $pagedesc = "Login";
 			setTimeout(function() {
 				$('.alert').alert('close');
 			}, 5000);
+
+			// Debug: Tampilkan form data saat submit (untuk testing)
+			$('#loginForm').on('submit', function() {
+				console.log('Form submitted with:', {
+					username: $('#username').val(),
+					password: $('#password').val()
+				});
+			});
 		});
 	</script>
 </body>
