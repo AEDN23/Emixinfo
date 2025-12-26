@@ -1,5 +1,5 @@
 <?php
-include("sess_check.php");
+
 
 
 // deskripsi halaman
@@ -26,7 +26,9 @@ include("dist/function/format_rupiah.php");
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<a href="stdtambah.php" class="btn btn-success">Tambah</a>
+						<?php if ($_SESSION['role'] == 'admin'): ?>
+							<a href="stdtambah.php" class="btn btn-success">Tambah</a>
+						<?php endif; ?>
 					</div>
 					<div class="panel-body">
 						<table class="table table-striped table-bordered table-hover" id="tabel-data">
@@ -54,7 +56,7 @@ include("dist/function/format_rupiah.php");
 									echo '<td class="text-center">' . $data['departemen'] . '</td>';
 									echo '<td class="text-center">' . $data['status'] . '</td>';
 									echo '<td class="text-center">' . $data['keterangan'] . '</td>';
-									echo '<td class="text-center"> <a href="stdview.php?id_dokumen='. $data['id_dokumen'].'" class="btn btn-primary btn-xs">Detail</a>';
+									echo '<td class="text-center"> <a href="stdview.php?id_dokumen=' . $data['id_dokumen'] . '" class="btn btn-primary btn-xs">Detail</a>';
 
 									/*
 												echo '<a href="video/' . $data['video'] .'" class="btn btn-warning btn-xs">Detail Video</a>';

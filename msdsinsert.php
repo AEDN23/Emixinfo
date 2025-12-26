@@ -6,7 +6,7 @@
     $departemen     = $_POST['departemen'];
     $status         = $_POST['status'];
     $keterangan     = $_POST['keterangan'];
-    $approved       = $_POST['approved'];
+    // $approved       = $_POST['approved'];
 
     $aktif = "Aktif";
 
@@ -24,8 +24,8 @@
     $rowscek = mysqli_num_rows($resscek);
 
     if ($rowscek < 1) {
-        $sql = "INSERT INTO msds (id_msds,nama_msds,departemen,status,keterangan, approved, file,video,active)
-            VALUES('$id_msds','$nama_msds','$departemen','$status','$keterangan','$approved', '$newpdf','$newvideo','$aktif')";
+        $sql = "INSERT INTO msds (id_msds,nama_msds,departemen,status,keterangan, file,video,active)
+            VALUES('$id_msds','$nama_msds','$departemen','$status','$keterangan', '$newpdf','$newvideo','$aktif')";
         $ress = mysqli_query($conn, $sql);
 
         if ($ress) {

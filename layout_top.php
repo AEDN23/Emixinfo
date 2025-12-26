@@ -1,5 +1,6 @@
 <?php
 // setting tanggal
+include("sess_check.php");
 
 
 $haries = array("Sunday" => "Minggu", "Monday" => "Senin", "Tuesday" => "Selasa", "Wednesday" => "Rabu", "Thursday" => "Kamis", "Friday" => "Jum'at", "Saturday" => "Sabtu");
@@ -184,14 +185,11 @@ $tahun = date("Y");
 						<li class="dropdown-divider"></li>
 
 						<li>
-							<a class="dropdown-item dropdown-item-dark" style="color: white;" href="pengaturan.php">
-								<i class="fa fa-gear mr-2"></i> Pengaturan Akun
-							</a>
-						</li>
-						<li>
-							<a class="dropdown-item dropdown-item-dark" style="color: white;" href="user.php">
-								<i class="fa-solid fa-users"></i> User
-							</a>
+							<?php if ($_SESSION['role'] == 'admin'): ?>
+								<a class="dropdown-item dropdown-item-dark" style="color: white;" href="user.php">
+									<i class="fa fa-gear mr-2"></i> Pengaturan Akun
+								</a>
+							<?php endif; ?>
 						</li>
 
 						<li>

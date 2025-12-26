@@ -1,7 +1,9 @@
 <?php
-include("sess_check.php");
 // FUNGSI GENERATE NOMOR MSDS OTOMATIS
-
+// deskripsi halaman
+$pagedesc = "STD Tambah";
+$menuparent = "master";
+include("layout_top.php");
 // --- LOGIKA AUTO NUMBER MSDS (VERSI AMAN DIGIT BERAPAPUN) ---
 
 // 1. Ambil id_msds terakhir
@@ -29,10 +31,7 @@ if (mysqli_num_rows($res_last) > 0) {
 
 
 
-// deskripsi halaman
-$pagedesc = "STD Tambah";
-$menuparent = "master";
-include("layout_top.php");
+
 ?>
 <!-- <script type="text/javascript">
 	function checkPrdAvailability() {
@@ -71,56 +70,56 @@ include("layout_top.php");
 							<h3>Tambah Data</h3>
 						</div>
 						<div class="panel-body">
-							<<div class="form-group">
+							<div class="form-group">
 								<label class="control-label col-sm-3">Nomor MSDS</label>
 								<div class="col-sm-4">
 									<input type="text" name="id_msds" class="form-control" value="<?php echo $new_id; ?>" readonly>
 								</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-3">Nama MSDS</label>
-							<div class="col-sm-4">
-								<input type="text" name="nama_msds" class="form-control" placeholder="Nama MSDS" required>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-3">Keterangan</label>
-							<div class="col-sm-4">
-								<select name="keterangan" id="departemen" class="form-control" required>
-									<option value="" selected>--- Pilih Kategori---</option>
-									<option value="Chemical">Chemical</option>
-									<option value="Polymer">Polymer</option>
-									<option value="Oil & Plasticizer">Oil & Plasticizer</option>
-									<option value="Customer supplied">Customer supplied</option>
-									<option value="Carbon">Carbon</option>
-								</select>
+							<div class="form-group">
+								<label class="control-label col-sm-3">Nama MSDS</label>
+								<div class="col-sm-4">
+									<input type="text" name="nama_msds" class="form-control" placeholder="Nama MSDS" required>
+								</div>
 							</div>
-						</div>
+							<div class="form-group">
+								<label class="control-label col-sm-3">Keterangan</label>
+								<div class="col-sm-4">
+									<select name="keterangan" id="departemen" class="form-control" required>
+										<option value="" selected>--- Pilih Kategori---</option>
+										<option value="Chemical">Chemical</option>
+										<option value="Polymer">Polymer</option>
+										<option value="Oil & Plasticizer">Oil & Plasticizer</option>
+										<option value="Customer supplied">Customer supplied</option>
+										<option value="Carbon">Carbon</option>
+									</select>
+								</div>
+							</div>
 
-						<div class="form-group">
-							<label class="control-label col-sm-3">Departemen</label>
-							<div class="col-sm-3">
-								<select name="departemen" id="departemen" class="form-control" required>
-									<option value="" selected>--- Pilih Departemen ---</option>
-									<option value="Production">Production</option>
-									<option value="Quality & Planning">Quality & Planning</option>
-									<option value="Purchasing Logistic">Purchasing Logistic</option>
-									<option value="Sales">Sales</option>
-									<option value="Maintenance">Maintenance</option>
-									<option value="PGA IT">PGA IT</option>
-									<option value="HSE">HSE</option>
-									<option value="Akunting">Akunting</option>
-								</select>
+							<div class="form-group">
+								<label class="control-label col-sm-3">Departemen</label>
+								<div class="col-sm-3">
+									<select name="departemen" id="departemen" class="form-control" required>
+										<option value="" selected>--- Pilih Departemen ---</option>
+										<option value="Production">Production</option>
+										<option value="Quality & Planning">Quality & Planning</option>
+										<option value="Purchasing Logistic">Purchasing Logistic</option>
+										<option value="Sales">Sales</option>
+										<option value="Maintenance">Maintenance</option>
+										<option value="PGA IT">PGA IT</option>
+										<option value="HSE">HSE</option>
+										<option value="Akunting">Akunting</option>
+									</select>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-3">Tahun Dokumen</label>
-							<div class="col-sm-4">
-								<input type="text" name="status" class="form-control" placeholder="Tahun Dokumen" required>
+							<div class="form-group">
+								<label class="control-label col-sm-3">Tahun Dokumen</label>
+								<div class="col-sm-4">
+									<input type="text" name="status" class="form-control" placeholder="Tahun Dokumen" required>
+								</div>
 							</div>
-						</div>
 
-						<!-- <div class="form-group">
+							<!-- <div class="form-group">
 										<label class="control-label col-sm-3">Checked & Approved</label>
 										<div class="col-sm-3">
 											<select name="approved" id="approved" class="form-control" required>
@@ -130,28 +129,28 @@ include("layout_top.php");
 											</select>
 										</div>
 									</div> -->
-						<div class="form-group">
-							<label class="control-label col-sm-3">Upload PDF</label>
-							<div class="col-sm-3">
-								<input type="file" name="pdf" class="form-control" accept="application/pdf">
+							<div class="form-group">
+								<label class="control-label col-sm-3">Upload PDF</label>
+								<div class="col-sm-3">
+									<input type="file" name="pdf" class="form-control" accept="application/pdf">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-sm-3">Upload Video</label>
+								<div class="col-sm-3">
+									<input type="file" name="video" class="form-control" accept="application/mp4O">
+									<!-- <input type="file" name="video" class="form-control-file"/> -->
+								</div>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-3">Upload Video</label>
-							<div class="col-sm-3">
-								<input type="file" name="video" class="form-control" accept="application/mp4O">
-								<!-- <input type="file" name="video" class="form-control-file"/> -->
-							</div>
+						<div class="panel-footer">
+							<button type="submit" name="simpan" class="btn btn-success">Simpan</button>
 						</div>
-					</div>
-					<div class="panel-footer">
-						<button type="submit" name="simpan" class="btn btn-success">Simpan</button>
-					</div>
-			</div><!-- /.panel -->
-			</form>
-		</div><!-- /.col-lg-12 -->
-	</div><!-- /.row -->
-</div><!-- /.container-fluid -->
+					</div><!-- /.panel -->
+				</form>
+			</div><!-- /.col-lg-12 -->
+		</div><!-- /.row -->
+	</div><!-- /.container-fluid -->
 </div><!-- /#page-wrapper -->
 <!-- bottom of file -->
 <?php

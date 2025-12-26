@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 08, 2025 at 03:44 AM
+-- Generation Time: Dec 26, 2025 at 03:46 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.3.8
 
@@ -100,7 +100,9 @@ CREATE TABLE `user` (
   `id` int NOT NULL,
   `nama` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `password` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+  `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `role` enum('admin','user') COLLATE utf8mb4_general_ci NOT NULL,
+  `departemen` varchar(25) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
@@ -166,6 +168,7 @@ ALTER TABLE `user`
 --
 -- Indexes for table `wi`
 --
+
 ALTER TABLE `wi`
   ADD PRIMARY KEY (`id_dokumen`) USING BTREE;
 
