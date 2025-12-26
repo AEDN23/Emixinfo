@@ -245,7 +245,7 @@ echo "</pre>";
 								<i class="fa fa-user" style="line-height: 38px;"></i>
 							</span>
 							<input type="text" class="form-control" name="username"
-								placeholder="Username" required autofocus style="border-radius: 0 25px 25px 0;">
+								value="user" required autofocus style="border-radius: 0 25px 25px 0;">
 						</div>
 					</div>
 
@@ -255,7 +255,7 @@ echo "</pre>";
 								<i class="fa fa-lock" style="line-height: 38px;"></i>
 							</span>
 							<input type="password" class="form-control" name="password"  
-								placeholder="Password" required style="border-radius: 0 25px 25px 0;">
+								value="password" required style="border-radius: 0 25px 25px 0;">
 						</div>
 					</div>
 
