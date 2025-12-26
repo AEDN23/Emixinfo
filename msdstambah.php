@@ -84,6 +84,13 @@ include("layout_top.php");
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="control-label col-sm-3">Keterangan</label>
+							<div class="col-sm-4">
+								<input type="text" name="keterangan" class="form-control" placeholder="Keterangan Dokumen" required>
+							</div>
+						</div>
+						
+						<div class="form-group">
 							<label class="control-label col-sm-3">Departemen</label>
 							<div class="col-sm-3">
 								<select name="departemen" id="departemen" class="form-control" required>
@@ -105,12 +112,7 @@ include("layout_top.php");
 								<input type="text" name="status" class="form-control" placeholder="Tahun Dokumen" required>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-3">Keterangan</label>
-							<div class="col-sm-4">
-								<input type="text" name="keterangan" class="form-control" placeholder="Keterangan Dokumen" required>
-							</div>
-						</div>
+						
 						<!-- <div class="form-group">
 										<label class="control-label col-sm-3">Checked & Approved</label>
 										<div class="col-sm-3">
