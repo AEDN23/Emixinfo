@@ -10,7 +10,7 @@ $res_last = mysqli_query($conn, $sql_last);
 
 if (mysqli_num_rows($res_last) > 0) {
 	$row_last = mysqli_fetch_assoc($res_last);
-	$last_id = $row_last['id_msds'];  
+	$last_id = $row_last['id_msds'];
 	$parts = explode("-", $last_id);
 
 	$number = (int) end($parts);
@@ -86,10 +86,17 @@ include("layout_top.php");
 						<div class="form-group">
 							<label class="control-label col-sm-3">Keterangan</label>
 							<div class="col-sm-4">
-								<input type="text" name="keterangan" class="form-control" placeholder="Keterangan Dokumen" required>
+								<select name="keterangan" id="departemen" class="form-control" required>
+									<option value="" selected>--- Pilih Kategori---</option>
+									<option value="Chemical">Chemical</option>
+									<option value="Polymer">Polymer</option>
+									<option value="Oil & Plasticizer">Oil & Plasticizer</option>
+									<option value="Customer supplied">Customer supplied</option>
+									<option value="Carbon">Carbon</option>
+								</select>
 							</div>
 						</div>
-						
+
 						<div class="form-group">
 							<label class="control-label col-sm-3">Departemen</label>
 							<div class="col-sm-3">
@@ -112,7 +119,7 @@ include("layout_top.php");
 								<input type="text" name="status" class="form-control" placeholder="Tahun Dokumen" required>
 							</div>
 						</div>
-						
+
 						<!-- <div class="form-group">
 										<label class="control-label col-sm-3">Checked & Approved</label>
 										<div class="col-sm-3">

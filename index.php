@@ -20,6 +20,10 @@ $coa = mysqli_num_rows($ress_coa);
 // deskripsi halaman
 $pagedesc = "Beranda";
 include("layout_top.php");
+
+
+
+
 ?>
 <!-- top of file -->
 <!-- Page Content -->
