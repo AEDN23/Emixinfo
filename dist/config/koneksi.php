@@ -12,14 +12,7 @@ $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 if (!$conn) {
     die("Tidak dapat terhubung ke database: " . mysqli_connect_error());
 }
-<<<<<<< HEAD
-    
-// Set charset
-mysqli_set_charset($conn, "utf8");
-=======
-
-
-define("CONF_DIR_PROJECT", "emixinfo");  
+define("CONF_DIR_PROJECT", "emixinfo");
 
 function site_url($slash = false)
 {
@@ -32,4 +25,3 @@ function site_url($slash = false)
 
     return $slash ? $base . '/' : $base;
 }
->>>>>>> temp-branch
