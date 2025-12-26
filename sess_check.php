@@ -7,10 +7,10 @@ include("dist/config/koneksi.php");
 include("dist/config/library.php");
 
 // mengarahkan ke halaman login.php apabila session belum terdaftar
-if (! isset($chk_sess))
+// if (! isset($chk_sess))
 
-	// mengarahkan ke halaman login.php apabila session belum terdaftar
-	if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
-		header("Location: login.php");
-		exit;
-	}
+// 	// mengarahkan ke halaman login.php apabila session belum terdaftar
+// 	if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
+// 		header("Location: login.php");
+// 		exit;
+// 	}

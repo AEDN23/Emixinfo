@@ -1,5 +1,7 @@
 <?php
 // setting tanggal
+
+
 $haries = array("Sunday" => "Minggu", "Monday" => "Senin", "Tuesday" => "Selasa", "Wednesday" => "Rabu", "Thursday" => "Kamis", "Friday" => "Jum'at", "Saturday" => "Sabtu");
 $bulans = array("", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
 $bulans_count = count($bulans);
@@ -53,6 +55,80 @@ $tahun = date("Y");
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+
+
+
+	<style>
+		/* tombol profile di navbar */
+		.profile-btn-dark {
+			width: 38px;
+			height: 38px;
+			background: #1f2937;
+			/* dark */
+			color: #e5e7eb;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 6px;
+			/* kotak lembut */
+			border: 1px solid #374151;
+			transition: all 0.2s ease;
+		}
+
+		.profile-btn-dark:hover,
+		.profile-btn-dark:focus {
+			background: #111827;
+			color: #cd0a0aff;
+			text-decoration: none;
+		}
+
+		/* dropdown container */
+		.profile-dropdown-dark {
+			min-width: 240px;
+			background: #111827;
+			border-radius: 8px;
+			border: 1px solid #1f2937;
+			padding: 8px 0;
+		}
+
+		/* info user (tanpa foto) */
+		.profile-info-dark {
+			padding: 12px 16px;
+		}
+
+		.profile-name-dark {
+			color: #f9fafb;
+			font-weight: 600;
+			font-size: 14px;
+		}
+
+		.profile-role-dark {
+			font-size: 12px;
+			color: #9ca3af;
+		}
+
+		/* item menu */
+		.dropdown-item-dark {
+			color: #e5e7eb;
+			padding: 10px 16px;
+			font-size: 14px;
+		}
+
+		.dropdown-item-dark:hover {
+			background: #1f2937;
+			color: #cb0d0dff;
+		}
+
+		/* divider */
+		.profile-dropdown-dark .dropdown-divider {
+			border-color: #1f2937;
+		}
+	</style>
+
+
+
+
 </head>
 
 <body>
@@ -80,17 +156,62 @@ $tahun = date("Y");
 				</a>
 			</div><!-- /.navbar-header -->
 
+
+
+
+
+
 			<ul class="nav navbar-top-links navbar-right">
-				<li class="dropdown dropdown-right">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+				<li class="dropdown">
+					<a class="nav-link dropdown-toggle profile-btn-dark"
+						data-toggle="dropdown"
+						href="#"
+						aria-expanded="false">
+						<i class="fa fa-user"></i>
 					</a>
-					<ul class="dropdown-menu dropdown-user">
-						<li><a href="pengaturan.php"><i class="fa fa-gear fa-fw"></i>&nbsp;Pengaturan Akun</a></li>
-						<li class="divider"></li>
-						<li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Keluar</a></li>
-					</ul><!-- /.dropdown-user -->
-				</li><!-- /.dropdown -->
-			</ul><!-- /.navbar-top-links -->
+
+					<ul class="dropdown-menu dropdown-menu-right profile-dropdown-dark shadow">
+						<!-- Info User -->
+						<li class="profile-info-dark">
+							<div class="profile-name-dark">
+								<?php echo $_SESSION['nama'] ?? 'User'; ?>
+							</div>
+							<div class="profile-role-dark">
+								<?php echo $_SESSION['role'] ?? 'Role'; ?>
+							</div>
+						</li>
+
+						<li class="dropdown-divider"></li>
+
+						<li>
+							<a class="dropdown-item dropdown-item-dark" style="color: white;" href="pengaturan.php">
+								<i class="fa fa-gear mr-2"></i> Pengaturan Akun
+							</a>
+						</li>
+						<li>
+							<a class="dropdown-item dropdown-item-dark" style="color: white;" href="user.php">
+								<i class="fa-solid fa-users"></i> User
+							</a>
+						</li>
+
+						<li>
+							<a class="dropdown-item dropdown-item-dark text-danger" style="color: whitesmoke" href="dist/config/logout.php">
+								<i class="fa fa-sign-out mr-2"></i> Keluar
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+
+
+
+
+
+
+
+
+
+
 
 			<div class="navbar-default sidebar" role="navigation">
 				<div class="sidebar-nav navbar-collapse">

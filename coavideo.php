@@ -49,7 +49,7 @@ if (isset($_GET['video'])) {
 </head>
 
 <body>
-    <h2><?php echo $data['nama']; ?></h2>
+    <h2><?php echo $data['nama_coa']; ?></h2>
     <video width="800" controls>
         <source src="video/std/<?php echo $data['video']; ?>" type="video/mp4">
         Browser tidak mendukung video tag.
